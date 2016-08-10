@@ -1,0 +1,35 @@
+.descriptionBox {
+    display: none;
+    border: 1px solid transparent;
+}
+
+h3 {
+    display: inline-block;
+}
+
+#msg {
+    display: none;
+}
+
+.bookTitle:hover{
+    -webkit-transform: scale(1.4); 
+    -moz-transform: scale(1.4);
+    -o-transform: scale(1.4);
+    transform: scale(1.4);
+}
+
+.bookTitle {
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -ms-transition: all .4s ease-in-out;
+}
+
+textarea {
+    min-height: 200px;
+}
+
+.bookContainer{
+    border-bottom: 1px solid grey;
+    padding-bottom: 15px;
+}
