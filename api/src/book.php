@@ -1,8 +1,5 @@
-
-
 <?php
 include 'conn.php';
-
 
 class Book implements JsonSerializable {
     
@@ -52,12 +49,10 @@ class Book implements JsonSerializable {
     
     public function jsonSerialize(){
         return [
-//            'bookData' => [
                 'id' => $this->getId(),
                 'name' => $this->getName(),
                 'author' => $this->getAuthor(),
                 'description' => $this->getDescription()
-//            ]
         ];
     }
     
@@ -120,14 +115,4 @@ class Book implements JsonSerializable {
             return true;
         }
     }
-    
-    
-    
-    
-    
 }
-
-$newBook = new Book();
-//$newBook->loadFromDB($conn, 2);
-//echo $newBook->getDescription();
-//$newBook->deleteFromDB($conn);

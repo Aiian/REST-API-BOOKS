@@ -7,7 +7,8 @@ $book = new Book();
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     if (isset($_GET['id'])) {
-        $sql = "SELECT `id` FROM `Books` WHERE `id` = " . $_GET['id'] . " ORDER BY `name` ASC";
+        $id = $conn->escape_string($_GET['id']);
+        $sql = "SELECT `id` FROM `Books` WHERE `id` = $id ORDER BY `name` ASC";
         $result = $conn->query($sql);
             if (!$result){
                 echo "Connection failure.";
@@ -48,9 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         die();
     }
     
-    $name = $_POST['name'];
-    $author =$_POST['author'];
-    $description = $_POST['description'];
+    $name = $conn->escape_string($_POST['name']);
+    $author = $conn->escape_string($_POST['author']);
+    $description = $conn->escape_string($_POST['description']);
     
     if (empty($name)){
         answer(false, 'Book title is empty.');

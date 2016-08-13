@@ -24,19 +24,22 @@ $(function(){
                 
                 var bookTitle = $('.bookList .bookContainer:last-child .bookTitle');             
                 bookTitle
-                    .one('mousedown',getFromDB)
+                    .one('mousedown',getFromDB) // attach one event for downloading book data from database, so it doesn't fire on each click 
                     .on('click',slide)
                     .css('cursor','pointer');
-
+                // delete button
                 var buttonDelete = $('.bookList .bookContainer:last-child .descriptionBox .deleteButton');  
                 buttonDelete.one('click', deleteFromDB);
             }
+        }).fail(function(){
+            $('#msg').fadeIn(1000).text('Sorry, temporary server problems...').fadeOut(5000);
         });
-        
     }
+    // supporting functions for updateList
         function getFromDB(){
             var bookId = $(this).data('id');
             var bookContainer = $(this).parent();
+            $(bookContainer).find('.author').html('<h3>LOADING DATA...</h3>');
             $.ajax({
                 url: './api/books.php?id=' + bookId,
                 type: 'GET',
@@ -78,9 +81,13 @@ $(function(){
                     });    
                     updateList();
                 }
+            }).fail(function(){
+                 $('#msg').fadeIn(1000).text('Sorry, temporary server problems...').fadeOut(5000);
             });
         };
 
+
+    // submitting form for adding new book
     $("form").on('submit', function(event){
         event.preventDefault();
         
@@ -114,6 +121,8 @@ $(function(){
                 updateList();
                 clearForm();
             }
+        }).fail(function(){
+             $('#msg').fadeIn(1000).text('Sorry, temporary server problems...').fadeOut(5000);
         });
     });
     

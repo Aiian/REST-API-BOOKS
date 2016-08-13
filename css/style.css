@@ -33,3 +33,7 @@ textarea {
     border-bottom: 1px solid grey;
     padding-bottom: 15px;
 }
+
+.container {
+    margin-bottom: 200px;
+}
